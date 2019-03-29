@@ -2,6 +2,15 @@
 
 NESP SDK for Flutter
 
+
+## Support Platforms
+- IOS
+- Android 
+- Fuchsia
+- Windows
+- Mac OSX
+- Linux
+
 ## Getting Started
 
 This project is a starting point for a Flutter
@@ -13,11 +22,14 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
 
-
-## Support Platforms
-- IOS
-- Android 
-- Fuchsia
-- Windows
-- Mac OSX
-- Linux
+## Dependency methods:
+```shell
+dependencies: 
+  url_launcher: ">=0.1.2 <0.2.0"
+  collection: "^0.1.2"
+  plugin1: 
+    git: 
+      url: "git://github.com/flutter/plugin1.git"
+  plugin2: 
+    path: ../plugin2/ 
+```
