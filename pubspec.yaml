@@ -8,6 +8,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  image: ^2.0.7
   fluttertoast: ^3.0.3
   flutter:
     sdk: flutter
