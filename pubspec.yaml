@@ -10,6 +10,7 @@ environment:
 dependencies:
   image: ^2.0.7
   fluttertoast: ^3.0.3
+  clipboard_manager: ^0.0.1
   flutter:
     sdk: flutter
 

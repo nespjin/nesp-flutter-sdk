@@ -12,19 +12,20 @@
  * If you have any questions or if you find a bug,
  * please contact the author by email or ask for Issues.
  *
- * Author:JinZhaolu <1756404649@qq.com>
+ * Author:JinZhaolu <1756404649@qq.com> 
  */
+part of system;
 
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-
-class NespFlutterSdk {
-  static const MethodChannel _channel =
-      const MethodChannel('nesp_flutter_sdk');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+///
+///
+/// @team NESP Technology
+/// @author <a href="mailto:1756404649@qq.com">靳兆鲁 Email:1756404649@qq.com</a>
+/// @time: Created 19-4-3 上午12:16
+/// @project fish_movie
+///*/
+class ClipBoardManager {
+  static copyToClipBoard({String clipText, Function callBack(bool isSuccess)}) {
+    ThirdClipBoardManager.ClipboardManager.copyToClipBoard(clipText)
+        .then(callBack);
   }
 }
