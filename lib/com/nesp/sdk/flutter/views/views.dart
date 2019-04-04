@@ -16,6 +16,8 @@
  */
 library views;
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -35,6 +37,8 @@ part 'nesp_toast.dart';
 part 'nesp_user_accounts_drawer_header.dart';
 
 part 'single_select_dialog.dart';
+
+part 'nesp_line.dart';
 
 /**
  *
