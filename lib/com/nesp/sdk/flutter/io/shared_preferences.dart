@@ -14,30 +14,29 @@
  *
  * Author:JinZhaolu <1756404649@qq.com>
  */
+part of nesp_io;
+///
+///
+/// @team NESP Technology
+/// @author <a href="mailto:1756404649@qq.com">靳兆鲁 Email:1756404649@qq.com</a>
+/// @time: Created 19-4-3 下午6:22
+/// @project fish_movie
+///*/
 
-part of views;
+class SharedPreferencesUtils{
 
-
-class NespToast {
-  static showShortToast(String message) {
-    _showCommonToast(message, Toast.LENGTH_SHORT);
+  static save(String key, value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
   }
 
-  static showLongToast(String message) {
-    _showCommonToast(message, Toast.LENGTH_LONG);
+  static get(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.get(key);
   }
 
-  static _showCommonToast(
-    String message,
-    Toast toastLength,
-  ) {
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: toastLength,
-        timeInSecForIos: toastLength == Toast.LENGTH_SHORT ? 1 : 2,
-        fontSize: 13,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.grey,
-        textColor: Colors.white);
+  static remove(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(key);
   }
 }

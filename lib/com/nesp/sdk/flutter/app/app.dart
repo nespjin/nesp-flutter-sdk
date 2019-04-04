@@ -14,30 +14,17 @@
  *
  * Author:JinZhaolu <1756404649@qq.com>
  */
+library nesp_app;
 
-part of views;
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-
-class NespToast {
-  static showShortToast(String message) {
-    _showCommonToast(message, Toast.LENGTH_SHORT);
-  }
-
-  static showLongToast(String message) {
-    _showCommonToast(message, Toast.LENGTH_LONG);
-  }
-
-  static _showCommonToast(
-    String message,
-    Toast toastLength,
-  ) {
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: toastLength,
-        timeInSecForIos: toastLength == Toast.LENGTH_SHORT ? 1 : 2,
-        fontSize: 13,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.grey,
-        textColor: Colors.white);
-  }
-}
+part 'navigator_utils.dart';
+/**
+ *
+ *
+ * @team NESP Technology
+ * @author <a href="mailto:1756404649@qq.com">靳兆鲁 Email:1756404649@qq.com</a>
+ * @time: Created 19-4-3 下午2:22
+ * @project fish_movie
+ **/

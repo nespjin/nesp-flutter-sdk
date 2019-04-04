@@ -8,6 +8,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  shared_preferences: ^0.5.1+2
   image: ^2.0.7
   fluttertoast: ^3.0.3
   clipboard_manager: ^0.0.1
@@ -47,6 +48,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+  - family: nesp-icons
+    fonts:
+    - asset: assets/fonts/iconfont.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

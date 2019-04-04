@@ -15,11 +15,7 @@
  * Author:JinZhaolu <1756404649@qq.com>
  */
 
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/foundation.dart';
+part of views;
 
 class _AccountPictures extends StatelessWidget {
   const _AccountPictures({
@@ -39,19 +35,20 @@ class _AccountPictures extends StatelessWidget {
           top: 0.0,
           end: 0.0,
           child: Row(
-            children: (otherAccountsPictures ?? <Widget>[]).take(3).map<Widget>((Widget picture) {
+            children: (otherAccountsPictures ?? <Widget>[])
+                .take(3)
+                .map<Widget>((Widget picture) {
               return Padding(
-                padding: const EdgeInsetsDirectional.only(start: 8.0),
-                child: Semantics(
-                  container: true,
-                  child: Container(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                    width: 48.0,
-                    height: 48.0,
-                    child: picture,
-                 ),
-                )
-              );
+                  padding: const EdgeInsetsDirectional.only(start: 8.0),
+                  child: Semantics(
+                    container: true,
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                      width: 48.0,
+                      height: 48.0,
+                      child: picture,
+                    ),
+                  ));
             }).toList(),
           ),
         ),
@@ -60,10 +57,7 @@ class _AccountPictures extends StatelessWidget {
           child: Semantics(
             explicitChildNodes: true,
             child: SizedBox(
-              width: 72.0,
-              height: 72.0,
-              child: currentAccountPicture
-            ),
+                width: 72.0, height: 72.0, child: currentAccountPicture),
           ),
         ),
       ],
@@ -89,11 +83,13 @@ class _AccountDetails extends StatefulWidget {
   _AccountDetailsState createState() => _AccountDetailsState();
 }
 
-class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProviderStateMixin {
+class _AccountDetailsState extends State<_AccountDetails>
+    with SingleTickerProviderStateMixin {
   Animation<double> _animation;
   AnimationController _controller;
+
   @override
-  void initState () {
+  void initState() {
     super.initState();
     _controller = AnimationController(
       value: widget.isOpen ? 1.0 : 0.0,
@@ -104,10 +100,9 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
       parent: _controller,
       curve: Curves.fastOutSlowIn,
       reverseCurve: Curves.fastOutSlowIn.flipped,
-    )
-      ..addListener(() => setState(() {
-        // [animation]'s value has changed here.
-      }));
+    )..addListener(() => setState(() {
+          // [animation]'s value has changed here.
+        }));
   }
 
   @override
@@ -117,7 +112,7 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
   }
 
   @override
-  void didUpdateWidget (_AccountDetails oldWidget) {
+  void didUpdateWidget(_AccountDetails oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (_animation.status == AnimationStatus.dismissed ||
         _animation.status == AnimationStatus.reverse) {
@@ -166,7 +161,8 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
       children.add(accountEmailLine);
     }
     if (widget.onTap != null) {
-      final MaterialLocalizations localizations = MaterialLocalizations.of(context);
+      final MaterialLocalizations localizations =
+          MaterialLocalizations.of(context);
       final Widget dropDownIcon = LayoutId(
         id: _AccountDetailsLayout.dropdownIcon,
         child: Semantics(
@@ -183,8 +179,8 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
                   Icons.arrow_drop_down,
                   color: Colors.white,
                   semanticLabel: widget.isOpen
-                    ? localizations.hideAccountsLabel
-                    : localizations.showAccountsLabel,
+                      ? localizations.hideAccountsLabel
+                      : localizations.showAccountsLabel,
                 ),
               ),
             ),
@@ -219,8 +215,7 @@ class _AccountDetailsState extends State<_AccountDetails> with SingleTickerProvi
 const double _kAccountDetailsHeight = 56.0;
 
 class _AccountDetailsLayout extends MultiChildLayoutDelegate {
-
-  _AccountDetailsLayout({ @required this.textDirection });
+  _AccountDetailsLayout({@required this.textDirection});
 
   static const String accountName = 'accountName';
   static const String accountEmail = 'accountEmail';
@@ -237,21 +232,28 @@ class _AccountDetailsLayout extends MultiChildLayoutDelegate {
       positionChild(dropdownIcon, _offsetForIcon(size, iconSize));
     }
 
-    final String bottomLine = hasChild(accountEmail) ? accountEmail : (hasChild(accountName) ? accountName : null);
+    final String bottomLine = hasChild(accountEmail)
+        ? accountEmail
+        : (hasChild(accountName) ? accountName : null);
 
     if (bottomLine != null) {
-      final Size constraintSize = iconSize == null ? size : size - Offset(iconSize.width, 0.0);
+      final Size constraintSize =
+          iconSize == null ? size : size - Offset(iconSize.width, 0.0);
       iconSize ??= const Size(_kAccountDetailsHeight, _kAccountDetailsHeight);
 
       // place bottom line center at same height as icon center
-      final Size bottomLineSize = layoutChild(bottomLine, BoxConstraints.loose(constraintSize));
-      final Offset bottomLineOffset = _offsetForBottomLine(size, iconSize, bottomLineSize);
+      final Size bottomLineSize =
+          layoutChild(bottomLine, BoxConstraints.loose(constraintSize));
+      final Offset bottomLineOffset =
+          _offsetForBottomLine(size, iconSize, bottomLineSize);
       positionChild(bottomLine, bottomLineOffset);
 
       // place account name above account email
       if (bottomLine == accountEmail && hasChild(accountName)) {
-        final Size nameSize = layoutChild(accountName, BoxConstraints.loose(constraintSize));
-        positionChild(accountName, _offsetForName(size, nameSize, bottomLineOffset));
+        final Size nameSize =
+            layoutChild(accountName, BoxConstraints.loose(constraintSize));
+        positionChild(
+            accountName, _offsetForName(size, nameSize, bottomLineOffset));
       }
     }
   }
@@ -262,7 +264,8 @@ class _AccountDetailsLayout extends MultiChildLayoutDelegate {
   Offset _offsetForIcon(Size size, Size iconSize) {
     switch (textDirection) {
       case TextDirection.ltr:
-        return Offset(size.width - iconSize.width, size.height - iconSize.height);
+        return Offset(
+            size.width - iconSize.width, size.height - iconSize.height);
       case TextDirection.rtl:
         return Offset(0.0, size.height - iconSize.height);
     }
@@ -271,7 +274,8 @@ class _AccountDetailsLayout extends MultiChildLayoutDelegate {
   }
 
   Offset _offsetForBottomLine(Size size, Size iconSize, Size bottomLineSize) {
-    final double y = size.height - 0.5 * iconSize.height - 0.5 * bottomLineSize.height;
+    final double y =
+        size.height - 0.5 * iconSize.height - 0.5 * bottomLineSize.height;
     switch (textDirection) {
       case TextDirection.ltr:
         return Offset(0.0, y);
@@ -307,17 +311,17 @@ class NespUserAccountsDrawerHeader extends StatefulWidget {
   /// Creates a material design drawer header.
   ///
   /// Requires one of its ancestors to be a [Material] widget.
-  const NespUserAccountsDrawerHeader({
-    Key key,
-    this.decoration,
-    this.margin = const EdgeInsets.only(bottom: 8.0),
-    this.drawerHeaderBackground,
-    this.currentAccountPicture,
-    this.otherAccountsPictures,
-    @required this.accountName,
-    @required this.accountEmail,
-    this.onDetailsPressed
-  }) : super(key: key);
+  const NespUserAccountsDrawerHeader(
+      {Key key,
+      this.decoration,
+      this.margin = const EdgeInsets.only(bottom: 8.0),
+      this.drawerHeaderBackground,
+      this.currentAccountPicture,
+      this.otherAccountsPictures,
+      @required this.accountName,
+      @required this.accountEmail,
+      this.onDetailsPressed})
+      : super(key: key);
 
   /// The header's background. If decoration is null then a [BoxDecoration]
   /// with its background color set to the current theme's primaryColor is used.
@@ -350,10 +354,12 @@ class NespUserAccountsDrawerHeader extends StatefulWidget {
   final VoidCallback onDetailsPressed;
 
   @override
-  _NespUserAccountsDrawerHeaderState createState() => _NespUserAccountsDrawerHeaderState();
+  _NespUserAccountsDrawerHeaderState createState() =>
+      _NespUserAccountsDrawerHeaderState();
 }
 
-class _NespUserAccountsDrawerHeaderState extends State<NespUserAccountsDrawerHeader> {
+class _NespUserAccountsDrawerHeaderState
+    extends State<NespUserAccountsDrawerHeader> {
   bool _isOpen = false;
 
   void _handleDetailsPressed() {
@@ -371,9 +377,10 @@ class _NespUserAccountsDrawerHeaderState extends State<NespUserAccountsDrawerHea
       container: true,
       label: MaterialLocalizations.of(context).signedInLabel,
       child: DrawerHeader(
-        decoration: widget.decoration ?? BoxDecoration(
-          color: Theme.of(context).primaryColor,
-        ),
+        decoration: widget.decoration ??
+            BoxDecoration(
+              color: Theme.of(context).primaryColor,
+            ),
         margin: widget.margin,
         padding: const EdgeInsetsDirectional.only(top: 16.0, start: 16.0),
         child: SafeArea(
@@ -382,19 +389,20 @@ class _NespUserAccountsDrawerHeaderState extends State<NespUserAccountsDrawerHea
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 16.0),
-                  child: _AccountPictures(
-                    currentAccountPicture: widget.currentAccountPicture,
-                    otherAccountsPictures: widget.otherAccountsPictures,
-                  ),
-                )
-              ),
+                  child: Padding(
+                padding: const EdgeInsetsDirectional.only(end: 16.0),
+                child: _AccountPictures(
+                  currentAccountPicture: widget.currentAccountPicture,
+                  otherAccountsPictures: widget.otherAccountsPictures,
+                ),
+              )),
               _AccountDetails(
                 accountName: widget.accountName,
                 accountEmail: widget.accountEmail,
                 isOpen: _isOpen,
-                onTap: widget.onDetailsPressed == null ? null : _handleDetailsPressed,
+                onTap: widget.onDetailsPressed == null
+                    ? null
+                    : _handleDetailsPressed,
               ),
             ],
           ),
