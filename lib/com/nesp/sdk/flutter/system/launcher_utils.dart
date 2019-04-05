@@ -12,22 +12,24 @@
  * If you have any questions or if you find a bug,
  * please contact the author by email or ask for Issues.
  *
- * Author:JinZhaolu <1756404649@qq.com> 
+ * Author:JinZhaolu <1756404649@qq.com>
  */
-library system;
-
-import 'package:clipboard_manager/clipboard_manager.dart'
-    as ThirdClipBoardManager;
-//import 'package:url_launcher/url_launcher.dart';
+part of system;
 
 ///
-part 'ns_clipboard_manager.dart';
-
-part 'launcher_utils.dart';
-
 ///
 /// @team NESP Technology
 /// @author <a href="mailto:1756404649@qq.com">靳兆鲁 Email:1756404649@qq.com</a>
-/// @time: Created 19-4-3 上午12:12
+/// @time: Created 19-4-4 下午9:25
 /// @project fish_movie
 ///*/
+
+class LaunchUtils {
+//  static launchURL(String url) async {
+//    if (await canLaunch(url)) {
+//      await launch(url);
+//    } else {
+//      throw 'Could not launch $url';
+//    }
+//  }
+}

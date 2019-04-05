@@ -37,7 +37,7 @@ class NespToast {
         timeInSecForIos: toastLength == Toast.LENGTH_SHORT ? 1 : 2,
         fontSize: 13,
         gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.grey,
+        backgroundColor: Color(0xff5d5d5d),
         textColor: Colors.white);
   }
 }
