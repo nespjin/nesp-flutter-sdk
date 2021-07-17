@@ -21,44 +21,51 @@ import 'package:flutter/widgets.dart';
 
 class SmartDrawer extends StatefulWidget {
   final double elevation;
-  final Widget child;
-  final String semanticLabel;
+  final Widget? child;
+  final String? semanticLabel;
   final double widthPercent;
+
   ///add start
-  final DrawerCallback callback;
+  final DrawerCallback? callback;
+
   ///add end
   const SmartDrawer({
-    Key key,
+    Key? key,
     this.elevation = 16.0,
     this.child,
     this.semanticLabel,
-    this.widthPercent,
+    this.widthPercent = 0.0,
+
     ///add start
     this.callback,
+
     ///add end
   })  : assert(widthPercent < 1.0 && widthPercent > 0.0),
         super(key: key);
+
   @override
   _SmartDrawerState createState() => _SmartDrawerState();
 }
 
 class _SmartDrawerState extends State<SmartDrawer> {
-
   @override
   void initState() {
     ///add start
-    if(widget.callback!=null){
-      widget.callback(true);
+    if (widget.callback != null) {
+      widget.callback?.call(true);
     }
+
     ///add end
     super.initState();
   }
+
   @override
   void dispose() {
     ///add start
-    if(widget.callback!=null){
-      widget.callback(false);
+    if (widget.callback != null) {
+      widget.callback?.call(false);
     }
+
     ///add end
     super.dispose();
   }
@@ -66,16 +73,21 @@ class _SmartDrawerState extends State<SmartDrawer> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
-    String label = widget.semanticLabel;
+    String label = widget.semanticLabel ?? '';
     switch (defaultTargetPlatform) {
       case TargetPlatform.iOS:
-        label = widget.semanticLabel;
+        label = widget.semanticLabel ?? '';
         break;
       case TargetPlatform.android:
+      case TargetPlatform.linux:
+      case TargetPlatform.macOS:
+      case TargetPlatform.windows:
       case TargetPlatform.fuchsia:
-        label = widget.semanticLabel ?? MaterialLocalizations.of(context)?.drawerLabel;
+        label = widget.semanticLabel ??
+            (MaterialLocalizations.of(context).drawerLabel ?? '');
     }
-    final double _width = MediaQuery.of(context).size.width * widget.widthPercent;
+    final double _width =
+        MediaQuery.of(context).size.width * widget.widthPercent;
     return Semantics(
       scopesRoute: true,
       namesRoute: true,

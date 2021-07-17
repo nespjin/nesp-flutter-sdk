@@ -32,7 +32,7 @@ class _LinePainter extends CustomPainter {
   final double length;
   final bool isFullLength;
 
-  Size screenSize;
+  Size? screenSize;
 
   _LinePainter(
     BuildContext context,
@@ -66,11 +66,11 @@ class _LinePainter extends CustomPainter {
       ..strokeJoin = StrokeJoin.bevel;
 
     if (direction == Direction.Horizontal) {
-      canvas.drawLine(
-          Offset(0, 0), Offset(isFullLength ? window.physicalSize.width : length, 0), paint);
+      canvas.drawLine(Offset(0, 0),
+          Offset(isFullLength ? window.physicalSize.width : length, 0), paint);
     } else {
-       canvas.drawLine(
-          Offset(0, 0), Offset(0, isFullLength ? window.physicalSize.height : length), paint);
+      canvas.drawLine(Offset(0, 0),
+          Offset(0, isFullLength ? window.physicalSize.height : length), paint);
     }
   }
 
@@ -91,11 +91,11 @@ class Line extends StatelessWidget {
   final bool isFullLength;
 
   const Line(
-      {Key key,
+      {Key? key,
       this.length = 20,
-      this.strokeWidth,
-      this.direction,
-      this.color,
+      this.strokeWidth = 1,
+      this.direction = Direction.Vertical,
+      this.color = const Color.fromARGB(255, 255, 255, 255),
       this.isFullLength = false})
       : super(key: key);
 

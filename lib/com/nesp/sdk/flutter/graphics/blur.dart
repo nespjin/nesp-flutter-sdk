@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2019  NESP Technology Corporation. All rights reserved.
  *
@@ -549,12 +548,12 @@ class BlurStack {
         this.r, this.g, this.b, this.a, this.next);
   }
 
-  int r;
-  int g;
-  int b;
-  int a;
+  int r = 255;
+  int g = 255;
+  int b = 255;
+  int a = 255;
 
-  BlurStack next;
+  BlurStack next = BlurStack();
 }
 
 void processImageDataRGBA(
@@ -592,7 +591,7 @@ void processImageDataRGBA(
 
   BlurStack stackStart = new BlurStack();
   BlurStack stack = stackStart;
-  BlurStack stackEnd;
+  BlurStack stackEnd = new BlurStack();
   for (i = 1; i < div; i++) {
     stack = stack.next = new BlurStack();
     if (i == radiusPlus1) {
@@ -775,8 +774,8 @@ void processImageDataRGBA(
       a_out_sum -= stackIn.a;
 
       p = (x +
-          (((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) *
-              width)) <<
+              (((p = y + radiusPlus1) < heightMinus1 ? p : heightMinus1) *
+                  width)) <<
           2;
 
       r_sum += (r_in_sum += (stackIn.r = pixels[p]));

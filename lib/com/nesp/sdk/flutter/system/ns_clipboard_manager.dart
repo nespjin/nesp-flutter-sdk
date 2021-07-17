@@ -24,8 +24,12 @@ part of system;
 /// @project fish_movie
 ///*/
 class ClipBoardManager {
-  static copyToClipBoard({String clipText, Function callBack(bool isSuccess)}) {
-    ThirdClipBoardManager.ClipboardManager.copyToClipBoard(clipText)
-        .then(callBack);
+  static copyToClipBoard(
+      {required String clipText, Function(bool isSuccess)? callBack}) {
+    var copyToClipBoard =
+        ThirdClipBoardManager.ClipboardManager.copyToClipBoard(clipText);
+    if (callBack != null) {
+      copyToClipBoard.then(callBack);
+    }
   }
 }

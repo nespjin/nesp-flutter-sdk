@@ -29,28 +29,28 @@ part of views;
 typedef OnSingleSelectDialogSelect = Function(int index);
 typedef SingleSelectDialogDefaultValue = Future<int> Function();
 
-int _singleSelectDialogGroupValue;
+int _singleSelectDialogGroupValue = 1;
 
-String _singleSelectDialogTitle;
-String _singleSelectDialogOk;
-String _singleSelectDialogCancel;
+String _singleSelectDialogTitle = '';
+String _singleSelectDialogOk = '';
+String _singleSelectDialogCancel = '';
 
-List<SingleSelectDialogDataItem> _singleSelectDialogData;
-Function _onSingleSelectDialogSelect;
-Function _onSingleSelectDialogOkPress;
-Function _onSingleSelectDialogCancelPress;
-SingleSelectDialogDefaultValue _singleSelectDialogDefaultValue;
+List<SingleSelectDialogDataItem> _singleSelectDialogData = const [];
+Function? _onSingleSelectDialogSelect;
+Function? _onSingleSelectDialogOkPress;
+Function? _onSingleSelectDialogCancelPress;
+SingleSelectDialogDefaultValue? _singleSelectDialogDefaultValue;
 
 showNsSingleSelectDialog(
   BuildContext context, {
-  final String singleSelectDialogTitle,
-  final String singleSelectDialogOk,
-  final String singleSelectDialogCancel,
-  final SingleSelectDialogDefaultValue singleSelectDialogDefaultValue,
-  final OnSingleSelectDialogSelect onSingleSelectDialogSelect,
-  final Function onSingleSelectDialogOkPress,
-  final Function onSingleSelectDialogCancelPress,
-  final List<SingleSelectDialogDataItem> singleSelectDialogData,
+  final String singleSelectDialogTitle = '',
+  final String singleSelectDialogOk = '',
+  final String singleSelectDialogCancel = '',
+  final SingleSelectDialogDefaultValue? singleSelectDialogDefaultValue,
+  final OnSingleSelectDialogSelect? onSingleSelectDialogSelect,
+  final Function? onSingleSelectDialogOkPress,
+  final Function? onSingleSelectDialogCancelPress,
+  final List<SingleSelectDialogDataItem> singleSelectDialogData = const [],
 }) {
   _singleSelectDialogTitle = singleSelectDialogTitle;
   _singleSelectDialogOk = singleSelectDialogOk;
@@ -70,7 +70,7 @@ showNsSingleSelectDialog(
 }
 
 class _SingleSelectDialog extends StatefulWidget {
-  const _SingleSelectDialog({Key key}) : super(key: key);
+  const _SingleSelectDialog({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -85,7 +85,7 @@ class _SingleSelectDialogState extends State<_SingleSelectDialog> {
     // TODO: implement initState
     super.initState();
 
-    _singleSelectDialogDefaultValue().then((defaultValue) {
+    _singleSelectDialogDefaultValue?.call().then((defaultValue) {
       setState(() {
 //        if (_singleSelectDialogGroupValue != null) return;
         _singleSelectDialogGroupValue = defaultValue;
@@ -98,22 +98,18 @@ class _SingleSelectDialogState extends State<_SingleSelectDialog> {
     // TODO: implement build
     return AlertDialog(
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text(_singleSelectDialogCancel),
           onPressed: () {
             Navigator.pop(context);
-            if (_onSingleSelectDialogCancelPress() != null) {
-              _onSingleSelectDialogCancelPress();
-            }
+            _onSingleSelectDialogCancelPress?.call();
           },
         ),
-        FlatButton(
+        TextButton(
           child: Text(_singleSelectDialogOk),
           onPressed: () {
             Navigator.pop(context);
-            if (_onSingleSelectDialogOkPress() != null) {
-              _onSingleSelectDialogOkPress();
-            }
+            _onSingleSelectDialogOkPress?.call();
           },
         ),
       ],
@@ -135,7 +131,7 @@ class _SingleSelectDialogState extends State<_SingleSelectDialog> {
                 onChanged: (bool) {
                   setState(() {
                     _singleSelectDialogGroupValue = menuItem.id;
-                    _onSingleSelectDialogSelect(menuItem.id);
+                    _onSingleSelectDialogSelect?.call(menuItem.id);
                   });
                 }),
           );
@@ -149,7 +145,8 @@ class ColorChooseItem extends StatelessWidget {
   final Color color;
   final String title;
 
-  const ColorChooseItem({Key key, this.color, this.title}) : super(key: key);
+  const ColorChooseItem({Key? key, this.color = Colors.grey, this.title = ''})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +169,7 @@ class ColorChooseItem extends StatelessWidget {
 class SingleSelectDialogDataItem {
   final String name;
   final int id;
-  final Widget child;
+  final Widget? child;
 
-  SingleSelectDialogDataItem({this.id, this.name, this.child});
+  SingleSelectDialogDataItem({this.id = 0, this.name = '', this.child});
 }

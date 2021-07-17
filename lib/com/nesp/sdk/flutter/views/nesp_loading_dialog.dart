@@ -27,11 +27,11 @@ part of views;
 
 showAlertLoadingDialog(
   BuildContext context, {
-  String text,
-  bool isCalledTip,
-  bool isCallSuccess,
-  String errorText,
-  String successText,
+  String? text,
+  bool? isCalledTip,
+  bool? isCallSuccess,
+  String? errorText,
+  String? successText,
   bool isIosStyle = false,
   bool clickDismiss = false,
 }) {
@@ -40,7 +40,7 @@ showAlertLoadingDialog(
     builder: (context) {
       return AlertLoadingDialogBuilder(
         context,
-        text: text,
+        text: text ?? "",
         isIosStyle: isIosStyle,
         clickDismiss: clickDismiss,
       );
@@ -50,9 +50,9 @@ showAlertLoadingDialog(
 
 Widget AlertLoadingDialogBuilder(
   BuildContext context, {
-  String text,
-  String errorText,
-  String successText,
+  String? text,
+  String? errorText,
+  String? successText,
   bool isIosStyle = false,
   bool clickDismiss = false,
   bool isCalledTip = false,
@@ -119,10 +119,12 @@ Widget AlertLoadingDialogBuilder(
                                         errorText,
                                         style: dialogTheme.contentTextStyle,
                                       )))
-                            : Text(
-                                text,
-                                style: dialogTheme.contentTextStyle,
-                              )),
+                            : text == null
+                                ? null
+                                : Text(
+                                    text,
+                                    style: dialogTheme.contentTextStyle,
+                                  )),
                   ],
                 ),
               ),
