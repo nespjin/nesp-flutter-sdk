@@ -22,18 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cc4e94b-7c95-494b-b2f7-8f6a416b9806" name="Default Changelist" comment="update dep">
+    <list default="true" id="4cc4e94b-7c95-494b-b2f7-8f6a416b9806" name="Default Changelist" comment="Support null-safe">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/graphics/blur.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/graphics/blur.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/system/ns_clipboard_manager.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/system/ns_clipboard_manager.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_line.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_line.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/iconfont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/fonts/nesp-sdk-icons.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/assets/nesp_icons.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/assets/nesp_icons.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_loading_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_loading_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_toast.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_toast.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_user_accounts_drawer_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/nesp_user_accounts_drawer_header.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/single_select_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/single_select_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/smart_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/smart_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/com/nesp/sdk/flutter/views/views.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626528517412</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Support null-safe">
+      <created>1626533251089</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626533251089</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -93,24 +96,33 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update dep" />
-    <option name="LAST_COMMIT_MESSAGE" value="update dep" />
+    <MESSAGE value="Support null-safe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Support null-safe" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2507" height="858" key="GridCell.Tab.0.bottom" timestamp="1626530249219">
+    <state width="1282" height="586" key="GridCell.Tab.0.bottom" timestamp="1626537599210">
       <screen x="0" y="0" width="2560" height="1392" />
     </state>
-    <state width="2507" height="858" key="GridCell.Tab.0.bottom/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626530249219" />
-    <state width="2507" height="858" key="GridCell.Tab.0.center" timestamp="1626530249219">
+    <state width="1282" height="586" key="GridCell.Tab.0.bottom/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626537599210" />
+    <state width="1282" height="586" key="GridCell.Tab.0.center" timestamp="1626537599210">
       <screen x="0" y="0" width="2560" height="1392" />
     </state>
-    <state width="2507" height="858" key="GridCell.Tab.0.center/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626530249219" />
-    <state width="2507" height="858" key="GridCell.Tab.0.left" timestamp="1626530249219">
+    <state width="1282" height="586" key="GridCell.Tab.0.center/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626537599210" />
+    <state width="1282" height="586" key="GridCell.Tab.0.left" timestamp="1626537599210">
       <screen x="0" y="0" width="2560" height="1392" />
     </state>
-    <state width="2507" height="858" key="GridCell.Tab.0.left/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626530249219" />
-    <state width="2507" height="858" key="GridCell.Tab.0.right" timestamp="1626530249219">
+    <state width="1282" height="586" key="GridCell.Tab.0.left/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626537599210" />
+    <state width="1282" height="586" key="GridCell.Tab.0.right" timestamp="1626537599210">
       <screen x="0" y="0" width="2560" height="1392" />
     </state>
-    <state width="2507" height="858" key="GridCell.Tab.0.right/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626530249219" />
+    <state width="1282" height="586" key="GridCell.Tab.0.right/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626537599210" />
+    <state x="773" y="365" key="Vcs.Push.Dialog.v2" timestamp="1626533275992">
+      <screen x="0" y="0" width="2560" height="1392" />
+    </state>
+    <state x="773" y="365" key="Vcs.Push.Dialog.v2/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626533275992" />
+    <state x="1053" y="592" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1626533267326">
+      <screen x="0" y="0" width="2560" height="1392" />
+    </state>
+    <state x="1053" y="592" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/3840.131.1280.672/0.0.2560.1392@0.0.2560.1392" timestamp="1626533267326" />
   </component>
 </project>

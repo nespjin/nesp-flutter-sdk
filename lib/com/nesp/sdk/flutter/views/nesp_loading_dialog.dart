@@ -25,31 +25,68 @@ part of views;
 ///*/
 ///
 
-showAlertLoadingDialog(
-  BuildContext context, {
-  String? text,
-  bool? isCalledTip,
-  bool? isCallSuccess,
-  String? errorText,
-  String? successText,
-  bool isIosStyle = false,
-  bool clickDismiss = false,
-}) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertLoadingDialogBuilder(
-        context,
-        text: text ?? "",
-        isIosStyle: isIosStyle,
-        clickDismiss: clickDismiss,
-      );
-    },
-  );
+showSuccessTip(BuildContext context,
+    {String? text, bool isIosStyle = false,
+      int liveMilliseconds = 2000}) {
+  showAlertLoadingDialog(context, isIosStyle: isIosStyle,
+      isCalledTip: true,
+      isCallSuccess: true,
+      successText: text,
+      clickDismiss: true,
+      liveMilliseconds: 1200);
 }
 
-Widget AlertLoadingDialogBuilder(
-  BuildContext context, {
+showFailedTip(BuildContext context,
+    {String? text, bool isIosStyle = false,
+      int liveMilliseconds = 2000}) {
+  showAlertLoadingDialog(context, isIosStyle: isIosStyle,
+      isCalledTip: true,
+      isCallSuccess: false,
+      errorText: text,
+      clickDismiss: true,
+      liveMilliseconds: 1200);
+}
+
+showAlertLoadingDialog(BuildContext context,
+    {String? text,
+      bool? isCalledTip,
+      bool? isCallSuccess,
+      String? errorText,
+      String? successText,
+      bool isIosStyle = false,
+      bool clickDismiss = false,
+      int liveMilliseconds = 0}) {
+  final loadingDialogBuilder = (context) {
+    return alertLoadingDialogBuilder(
+      context,
+      text: text ?? "",
+      isCalledTip: isCalledTip ?? false,
+      isCheckSuccess: isCallSuccess ?? false,
+      successText: successText ?? '',
+      errorText: errorText ?? '',
+      isIosStyle: isIosStyle,
+      clickDismiss: clickDismiss,
+    );
+  };
+
+  if (isIosStyle) {
+    showCupertinoDialog(
+        barrierDismissible: clickDismiss, context: context, builder:
+    loadingDialogBuilder);
+  } else {
+    showDialog(
+      context: context,
+      builder: loadingDialogBuilder,
+    );
+  }
+
+  if (liveMilliseconds > 0) {
+    Future.delayed(Duration(milliseconds: liveMilliseconds))
+        .then((value) => Navigator.pop(context));
+  }
+}
+
+Widget alertLoadingDialogBuilder(BuildContext context, {
   String? text,
   String? errorText,
   String? successText,
@@ -60,78 +97,88 @@ Widget AlertLoadingDialogBuilder(
 }) {
   var dialogTheme = DialogTheme.of(context);
 
+  _buildLoadingDialogContent() {
+    Text? textContent;
+    if (isCalledTip) {
+      if (isCheckSuccess && successText != null && successText.isNotEmpty) {
+        textContent = Text(
+          successText,
+          style: dialogTheme.contentTextStyle,
+        );
+      } else if (errorText != null && errorText.isNotEmpty) {
+        textContent = Text(
+          errorText,
+          style: dialogTheme.contentTextStyle,
+        );
+      }
+    } else if (text != null && text.isNotEmpty) {
+      textContent = Text(
+        text,
+        style: dialogTheme.contentTextStyle,
+      );
+    }
+
+    return Center(
+      //保证控件居中效果
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new SizedBox(
+            width: 120.0,
+            height: 120.0,
+            child: new Container(
+              decoration: ShapeDecoration(
+                color: isIosStyle ? Colors.white54 : Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8.0),
+                  ),
+                ),
+              ),
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  isCalledTip
+                      ? (Icon(
+                    isCheckSuccess
+                        ? NespIcons.check_right
+                        : NespIcons.check_failed,
+                    size: textContent == null ? 60 : 45,
+                    color: isCheckSuccess
+                        ? Colors.black
+                        : CupertinoColors.destructiveRed,
+                  ))
+                      : (isIosStyle
+                      ? CupertinoActivityIndicator(
+                    radius: 24,
+                  )
+                      : CircularProgressIndicator()),
+                  new Padding(
+                      padding: EdgeInsets.only(
+                        top: textContent == null ? 0.0 : 18.0,
+                      ),
+                      child: textContent),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   return GestureDetector(
     onTap: () {
       clickDismiss ? Navigator.pop(context) : '';
     },
-    child: Material(
+    child: isIosStyle
+        ? _buildLoadingDialogContent()
+        : Material(
       //创建透明层
       type: MaterialType.transparency, //透明类型
-      child: new Center(
-        //保证控件居中效果
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new SizedBox(
-              width: 120.0,
-              height: 120.0,
-              child: new Container(
-                decoration: ShapeDecoration(
-                  color: isIosStyle ? Colors.white54 : Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8.0),
-                    ),
-                  ),
-                ),
-                child: new Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    isCalledTip
-                        ? (Icon(
-                            isCheckSuccess
-                                ? NespIcons.check_right
-                                : NespIcons.check_failed,
-                            size: 45,
-                          ))
-                        : (isIosStyle
-                            ? CupertinoActivityIndicator(
-                                radius: 15,
-                              )
-                            : CircularProgressIndicator()),
-                    new Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20.0,
-                        ),
-                        child: isCalledTip
-                            ? (isCheckSuccess
-                                ? ((successText == null || successText.isEmpty)
-                                    ? null
-                                    : Text(
-                                        successText,
-                                        style: dialogTheme.contentTextStyle,
-                                      ))
-                                : ((errorText == null || errorText.isEmpty)
-                                    ? null
-                                    : Text(
-                                        errorText,
-                                        style: dialogTheme.contentTextStyle,
-                                      )))
-                            : text == null
-                                ? null
-                                : Text(
-                                    text,
-                                    style: dialogTheme.contentTextStyle,
-                                  )),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      child: _buildLoadingDialogContent(),
     ),
   );
 }
