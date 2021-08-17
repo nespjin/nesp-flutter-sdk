@@ -12,7 +12,7 @@ dependencies:
   url_launcher: ^6.0.9
   image: ^3.0.2
   fluttertoast: ^8.0.7
-  clipboard_manager: ^0.0.1
+  clipboard_manager: ^0.0.4
   flutter:
     sdk: flutter
 
