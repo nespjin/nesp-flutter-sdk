@@ -16,14 +16,14 @@
  */
 library system;
 
-import 'package:clipboard_manager/clipboard_manager.dart'
-    as ThirdClipBoardManager;
+// import 'package:clipboard_manager/clipboard_manager.dart'
+//     as ThirdClipBoardManager;
 //import 'package:url_launcher/url_launcher.dart';
+
+part 'launcher_utils.dart';
 
 ///
 part 'ns_clipboard_manager.dart';
-
-part 'launcher_utils.dart';
 
 ///
 /// @team NESP Technology

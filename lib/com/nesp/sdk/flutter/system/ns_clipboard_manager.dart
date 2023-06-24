@@ -26,10 +26,10 @@ part of system;
 class ClipBoardManager {
   static copyToClipBoard(
       {required String clipText, Function(bool isSuccess)? callBack}) {
-    var copyToClipBoard =
-        ThirdClipBoardManager.ClipboardManager.copyToClipBoard(clipText);
-    if (callBack != null) {
-      copyToClipBoard.then(callBack);
-    }
+    // var copyToClipBoard =
+    //     ThirdClipBoardManager.ClipboardManager.copyToClipBoard(clipText);
+    // if (callBack != null) {
+    //   copyToClipBoard.then(callBack);
+    // }
   }
 }
