@@ -2,6 +2,8 @@
 
 NESP SDK for Flutter
 
+**This repository will be moved to [nesp_sdk_flutter](https://github.com/nespjin/nesp_sdk_flutter/) and deleted.**
+
 
 ## Support Platforms
 - IOS
